@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package ticket;
+
+option go_package="github.com/Unlites/airport_grpc_backend/proto";
+
+message EmptyRequest {}
+
+message ResultResponse {
+    string message = 1;
+}
+
+message TicketRequest {
+    int32 planeRouteId = 1;
+    string passengerFirstName = 2;
+    string passengerLastName = 3;
+}
+
+service Ticket {
+    rpc AddTicket(TicketRequest) returns (ResultResponse) {}
+}
+

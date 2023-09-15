@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package planeroute;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package="github.com/Unlites/airport_grpc_backend/proto";
+
+message EmptyRequest {}
+
+message ResultResponse {
+    string message = 1;
+}
+
+message PlaneRouteRequest {
+    int32 planeId = 1;
+    string from = 2;
+    string to = 3;
+    string status = 4;
+    int32 ticketsLeft = 5;
+    google.protobuf.Timestamp arrivalTime = 6;
+    google.protobuf.Timestamp departureTime = 7;
+}
+
+message PlaneRouteResponse {
+    int32 id = 1;
+    int32 planeId = 2;
+    string from = 3;
+    string to = 4;
+    string status = 5;
+    int32 ticketsLeft = 6;
+    google.protobuf.Timestamp arrivalTime = 7;
+    google.protobuf.Timestamp departureTime = 8;
+}
+
+service PlaneRoute {
+    rpc AddPlaneRoute(PlaneRouteRequest) returns (ResultResponse) {}
+    rpc StreamCurrentRoutes(EmptyRequest) returns (stream PlaneRouteResponse) {}
+}
+
