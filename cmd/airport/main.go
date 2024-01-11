@@ -38,11 +38,7 @@ func main() {
 
 	l, err := net.Listen("tcp", ":8000")
 	if err != nil {
-		log.Fatal(err)
-	}
-
-	if err := s.Serve(l); err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to listen: %v", err)
 	}
 
 	sigCh := make(chan os.Signal, 1)
